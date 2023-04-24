@@ -1,25 +1,24 @@
-import logo from './logo.svg';
+//import createContext
+
+import { useState, createContext } from 'react';
+import Page from './components/Page.jsx';
 import './App.css';
+// create an export
+export const UserStatus = createContext(null);
+
 
 function App() {
+  const [signedIn, setSignedIn] = useState(false);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    //establish a provider
+    <>
+    <UserStatus.Provider value={[signedIn,setSignedIn]}>
+      <h1>{signedIn ? "Click below to Sign Out" : "Click below to Sign In"}</h1>
+         <Page />
+    </UserStatus.Provider>
+    </>
   );
 }
 
 export default App;
+
